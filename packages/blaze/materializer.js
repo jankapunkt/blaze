@@ -97,7 +97,12 @@ const isPromiseLike = x => !!x && typeof x.then === 'function';
 
 function then(maybePromise, fn) {
   if (isPromiseLike(maybePromise)) {
-    maybePromise.then(fn, Blaze._reportException);
+    // explicitly catch exceptions and report, instead
+    // if implicit catching via .then(fn, onError),
+    // because it will be (weirdly) treated as uncaught exception in promise
+    maybePromise
+        .then(fn)
+        .catch(Blaze._reportException);
   } else {
     fn(maybePromise);
   }
