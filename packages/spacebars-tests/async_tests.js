@@ -1,3 +1,9 @@
+/**
+ * Runs a single async test
+ * @param templateName {string}
+ * @param testName {string}
+ * @param fn {function(test, template, render):Promise}
+ */
 function asyncTest(templateName, testName, fn) {
   const name = [templateName, testName].filter(Boolean).join(' ');
   Tinytest.addAsync(`spacebars-tests - async - ${name}`, test => {
@@ -58,18 +64,18 @@ asyncSuite('attribute', [
 ]);
 
 asyncSuite('attributes', [
-  ['getter in getter', { x: getter({ class: getter('foo') }) }, '<img>', '<img>'], // Nested getters are NOT evaluated.
-  ['getter in thenable', { x: thenable({ class: getter('foo') }) }, '<img>', '<img>'], // Nested getters are NOT evaluated.
-  ['getter in value', { x: value({ class: getter('foo') }) }, '<img>', '<img>'], // Nested getters are NOT evaluated.
-  ['static in getter', { x: getter({ class: 'foo' }) }, '<img>', '<img class="foo">'],
-  ['static in thenable', { x: thenable({ class: 'foo' }) }, '<img>', '<img class="foo">'],
-  ['static in value', { x: value({ class: 'foo' }) }, '<img>', '<img class="foo">'],
-  ['thenable in getter', { x: getter({ class: thenable('foo') }) }, '<img>', '<img class="foo">'],
-  ['thenable in thenable', { x: thenable({ class: thenable('foo') }) }, '<img>', '<img class="foo">'],
-  ['thenable in value', { x: value({ class: thenable('foo') }) }, '<img>', '<img class="foo">'],
-  ['value in getter', { x: getter({ class: value('foo') }) }, '<img>', '<img class="foo">'],
-  ['value in thenable', { x: thenable({ class: value('foo') }) }, '<img>', '<img class="foo">'],
-  ['value in value', { x: value({ class: value('foo') }) }, '<img>', '<img class="foo">'],
+   ['getter in getter', { x: getter({ class: getter('foo') }) }, '<img>', '<img>'], // Nested getters are NOT evaluated.
+   ['getter in thenable', { x: thenable({ class: getter('foo') }) }, '<img>', '<img>'], // Nested getters are NOT evaluated.
+   ['getter in value', { x: value({ class: getter('foo') }) }, '<img>', '<img>'], // Nested getters are NOT evaluated.
+   ['static in getter', { x: getter({ class: 'foo' }) }, '<img>', '<img class="foo">'],
+   ['static in thenable', { x: thenable({ class: 'foo' }) }, '<img>', '<img class="foo">'],
+   ['static in value', { x: value({ class: 'foo' }) }, '<img>', '<img class="foo">'],
+   ['thenable in getter', { x: getter({ class: thenable('foo') }) }, '<img>', '<img class="foo">'],
+   ['thenable in thenable', { x: thenable({ class: thenable('foo') }) }, '<img>', '<img class="foo">'],
+   ['thenable in value', { x: value({ class: thenable('foo') }) }, '<img>', '<img class="foo">'],
+   ['value in getter', { x: getter({ class: value('foo') }) }, '<img>', '<img class="foo">'],
+   ['value in thenable', { x: thenable({ class: value('foo') }) }, '<img>', '<img class="foo">'],
+   ['value in value', { x: value({ class: value('foo') }) }, '<img>', '<img class="foo">'],
 ]);
 
 asyncSuite('attributes_double', [
@@ -121,10 +127,10 @@ asyncSuite('each_new', [
 ]);
 
 asyncSuite('with', [
-  ['null', { x: Promise.resolve(null) }, '', '', 2],
-  ['empty', { x: Promise.resolve({}) }, '', '', 2],
-  ['direct', { x: Promise.resolve({y: 1}) }, '', '1', 2],
-  ['wrapped', { x: Promise.resolve({y: Promise.resolve(1)}) }, '', '1', 3],
+    ['null', { x: Promise.resolve(null) }, '', '', 2],
+    ['empty', { x: Promise.resolve({}) }, '', '', 2],
+    ['direct', { x: Promise.resolve({y: 1}) }, '', '1', 2],
+    ['wrapped', { x: Promise.resolve({y: Promise.resolve(1)}) }, '', '1', 3],
 ]);
 
 // In the following tests pending=1, rejected=2, resolved=3.
